@@ -1,0 +1,28 @@
+body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+  background: #f0f0f0;
+}
+.container {
+  margin-top: 50px;
+}
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  cursor: pointer;
+  background: #007bff;
+  color: white;
+  border-radius: 8px;
+}
+button:hover {
+  background: #0056b3;
+}
+.video-container {
+  margin-top: 20px;
+}
+#video {
+  width: 70%;
+  border: 3px solid #333;
+  border-radius: 10px;
+}
