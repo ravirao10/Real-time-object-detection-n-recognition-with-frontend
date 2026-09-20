@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Real-Time Object Detection</title>
+  <style>
+    body { font-family: Arial, sans-serif; text-align: center; background: #f0f0f0; }
+    .container { margin-top: 30px; }
+    button { padding: 10px 20px; margin: 10px; border: none; cursor: pointer;
+             background: #007bff; color: white; border-radius: 8px; }
+    button:hover { background: #0056b3; }
+    #video { width: 700px; border: 2px solid #333; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Real-Time Object Detection</h1>
+    <button id="startBtn">▶ Click Here to Start</button>
+    <button id="stopBtn">⏹ Stop</button>
+    <p id="status">Status: Idle</p>
+    <div class="video-container">
+      <img id="video" src="/video_feed">
+    </div>
+  </div>
+  <script>
+    document.getElementById("startBtn").addEventListener("click", () => {
+      fetch("/start", { method: "POST" })
+        .then(res => res.json())
+        .then(data => { document.getElementById("status").innerText = "Status: " + data.status; });
+    });
+
+    document.getElementById("stopBtn").addEventListener("click", () => {
+      fetch("/stop", { method: "POST" })
+        .then(res => res.json())
+        .then(data => { document.getElementById("status").innerText = "Status: " + data.status; });
+    });
+
+    setInterval(() => {
+      fetch("/status")
+        .then(res => res.json())
+        .then(data => { document.getElementById("status").innerText = "Status: " + data.status; });
+    }, 2000);
+  </script>
+</body>
+</html>
